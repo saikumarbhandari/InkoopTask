@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FuelIt</title>
+</head>
+<style>
+    .button {
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    
+    .button1 {background-color: #4CAF50;} 
+
+    </style>
+    <script>
+        //document.write("Hello Start!");
+        var petrol=50;
+        var carAt=0;
+        var station = new Array();
+        var fueled;
+		var pumpGen;
+		var j;
+        function CarGame(){
+            var i=0;
+			var j=0;
+			for(var i=0;i<6;i++){
+				station[i]=getStations();
+			}
+            document.write("Game Started<br>");
+			pumpGen=station.sort(function(a,b){return a-b});
+			document.write("Petrol pumps generated at "+pumpGen);         
+           
+		   while(carAt<=100){
+		           
+		            carAt = carAt + travelDistance();
+					var	rem = getRemaining(carAt);
+					var ck = checkStations(carAt,rem);
+					document.write("<br>");
+					document.write("move->"+ (j+1)  +" Car At " +carAt+",Petrol Remaining "+rem+" "+ck);
+				    j+=1;
+					if(rem==0 ||rem<0 ){
+					document.write();
+					document.write("<br>Game Over!!!!!!!!");
+					document.write("<style>");
+					document.write(".button {");
+					document.write("border: none;");
+					document.write("color: white;");
+					document.write("padding: 15px 32px;");
+					document.write("text-align: center;");
+					document.write("text-decoration: none;");
+					document.write("display: inline-block;");
+					document.write("font-size: 16px;");
+					document.write("margin: 4px 2px;");
+					document.write("cursor: pointer;");
+					document.write("}.button1 {background-color: #4CAF50;}"); 
+					document.write("</style>");
+					document.write("<br><button class='button button1' onclick='pageRedirect()' >Restart</button>");
+					break;
+					}
+			}
+				
+			
+        }
+        function getStations() {
+        var x = Math.floor((Math.random() * 100) + 1);
+        return x;  
+        }
+		
+		
+        function travelDistance() {
+            var x = Math.floor((Math.random() * 6) + 1);
+            return x;
+        }
+	
+      
+        function getRemaining(car_at){
+            var petrolUsed = car_at *2;
+            var petrolRem = petrol - petrolUsed;
+            return petrolRem;
+        }
+        function checkStations(car_at,rem){
+            for(var i=0;i<6;i++){
+            
+                if(car_at==station[i]){
+					fueled = "Fueled "+(rem + 30);
+                } 
+                else{
+                    fueled = " ";
+                }
+            }
+            return fueled; 
+        } 
+		
+		
+		 function pageRedirect() {
+					window.location.href = "CarGame1.html";
+            }    
+       
+         
+    </script>
+<body>
+    
+        <button class="button button1" onclick="CarGame()">Start</button>
+        
+</body>
+</html>
